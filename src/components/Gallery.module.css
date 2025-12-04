@@ -1,0 +1,106 @@
+.gallery {
+    padding: 8rem 0;
+    background: var(--background);
+}
+
+.title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--accent-dim);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    margin: 0 0 5rem 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.gridItem {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.4s var(--ease-out-expo);
+}
+
+.gridItem:hover {
+    transform: translateY(-8px);
+}
+
+.mediaWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out-expo);
+}
+
+.gridItem:hover .media {
+    transform: scale(1.05);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease-out-expo);
+}
+
+.overlayVisible {
+    opacity: 1;
+}
+
+.caption {
+    color: var(--foreground);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    transform: translateY(20px);
+    transition: transform 0.4s var(--ease-out-expo);
+}
+
+.overlayVisible .caption {
+    transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+    }
+}

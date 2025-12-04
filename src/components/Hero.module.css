@@ -1,0 +1,106 @@
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem;
+    text-align: center;
+    z-index: 1;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(59, 130, 246, 0.3) 100%);
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.imageGlow {
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
+    filter: blur(40px);
+    z-index: -1;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    background: #ffffff;
+}
+
+.title {
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 0;
+    color: var(--foreground);
+}
+
+.titleAccent {
+    background: linear-gradient(135deg, #ffffff 0%, #888888 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--accent-dim);
+    max-width: 600px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.scrollIndicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+
+.scrollIcon {
+    width: 32px;
+    height: 32px;
+    color: var(--accent-dim);
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+@media (min-width: 768px) {
+    .imageWrapper {
+        width: 400px;
+        height: 400px;
+    }
+
+    .content {
+        gap: 4rem;
+    }
+}
