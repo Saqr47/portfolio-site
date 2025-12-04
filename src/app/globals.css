@@ -9,8 +9,8 @@
   --accent-dim: rgba(255, 255, 255, 0.6);
 
   /* Typography */
-  --font-heading: var(--font-inter);
-  --font-body: var(--font-inter);
+  --font-heading: var(--font-poppins);
+  --font-body: var(--font-poppins);
 
   /* Spacing */
   --container-width: 1400px;
@@ -22,6 +22,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 body {

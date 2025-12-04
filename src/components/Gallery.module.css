@@ -1,6 +1,7 @@
 .gallery {
     padding: 8rem 0;
     background: var(--background);
+    scroll-snap-align: start;
 }
 
 .title {
