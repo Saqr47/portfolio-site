@@ -7,19 +7,77 @@ import styles from './Gallery.module.css';
 
 interface MediaItem {
     id: number;
-    type: 'image' | 'video';
     src: string;
+    videoSrc?: string; // Optional for now, but logic will use it
     alt: string;
     caption: string;
 }
 
+// Using placeholders for demonstration of the "Next Frame" logic
 const mediaItems: MediaItem[] = [
-    { id: 1, type: 'image', src: '/gallery-1.jpg', alt: 'Abstract Art', caption: 'Abstract Composition' },
-    { id: 2, type: 'image', src: '/gallery-2.jpg', alt: 'Architecture', caption: 'Modern Architecture' },
-    { id: 3, type: 'image', src: '/gallery-3.jpg', alt: 'Landscape', caption: 'Mountain Vista' },
-    { id: 4, type: 'image', src: '/gallery-4.jpg', alt: 'Product', caption: 'Luxury Product' },
-    { id: 5, type: 'image', src: '/gallery-5.jpg', alt: 'Urban', caption: 'Urban Nights' },
-    { id: 6, type: 'image', src: '/gallery-6.jpg', alt: 'Abstract', caption: 'Fluid Dynamics' },
+    {
+        id: 1,
+        src: '/gallery-1.jpg',
+        videoSrc: 'https://cdn.coverr.co/videos/coverr-abstract-colorful-fluid-5392/1080p.mp4',
+        alt: 'Project One',
+        caption: 'Abstract Fluidity'
+    },
+    {
+        id: 2,
+        src: '/gallery-2.jpg',
+        videoSrc: 'https://cdn.coverr.co/videos/coverr-modern-architecture-building-5243/1080p.mp4',
+        alt: 'Project Two',
+        caption: 'Modern Structure'
+    },
+    {
+        id: 3,
+        src: '/gallery-3.jpg',
+        videoSrc: 'https://cdn.coverr.co/videos/coverr-foggy-mountains-2664/1080p.mp4',
+        alt: 'Project Three',
+        caption: 'Nature Scapes'
+    },
+    {
+        id: 4,
+        src: '/gallery-4.jpg',
+        videoSrc: 'https://cdn.coverr.co/videos/coverr-luxury-watch-4632/1080p.mp4',
+        alt: 'Project Four',
+        caption: 'Product Design'
+    },
+    {
+        id: 5,
+        src: '/gallery-5.jpg',
+        videoSrc: 'https://cdn.coverr.co/videos/coverr-night-city-traffic-4532/1080p.mp4',
+        alt: 'Project Five',
+        caption: 'Urban Motion'
+    },
+    {
+        id: 6,
+        src: '/gallery-6.jpg',
+        videoSrc: 'https://cdn.coverr.co/videos/coverr-ink-in-water-18/1080p.mp4',
+        alt: 'Project Six',
+        caption: 'Ink Dynamics'
+    },
+    {
+        id: 7,
+        src: '/gallery-1.jpg',
+        videoSrc: 'https://cdn.coverr.co/videos/coverr-abstract-colorful-fluid-5392/1080p.mp4',
+        alt: 'Project Seven',
+        caption: 'Digital Art'
+    },
+    {
+        id: 8,
+        src: '/gallery-2.jpg',
+        videoSrc: 'https://cdn.coverr.co/videos/coverr-modern-architecture-building-5243/1080p.mp4',
+        alt: 'Project Eight',
+        caption: 'Visual Effects'
+    },
+    {
+        id: 9,
+        src: '/gallery-3.jpg',
+        videoSrc: 'https://cdn.coverr.co/videos/coverr-foggy-mountains-2664/1080p.mp4',
+        alt: 'Project Nine',
+        caption: 'Motion Graphics'
+    },
 ];
 
 export default function Gallery() {
@@ -27,58 +85,51 @@ export default function Gallery() {
 
     return (
         <section className={styles.gallery}>
-            <div className="container">
+            <div className={styles.container}>
                 <motion.div
+                    className={styles.header}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-100px' }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
                 >
-                    <h2 className={styles.title}>Featured Work</h2>
-                    <p className={styles.subtitle}>
-                        A curated selection of creative projects and visual explorations
-                    </p>
+                    <h2 className={styles.heading}>Featured Work</h2>
+                    <p className={styles.subheading}>A curated selection of my best projects</p>
                 </motion.div>
-
                 <div className={styles.grid}>
-                    {mediaItems.map((item, index) => (
+                    {mediaItems.map((item) => (
                         <motion.div
                             key={item.id}
                             className={styles.gridItem}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-50px' }}
-                            transition={{
-                                duration: 0.6,
-                                delay: index * 0.1,
-                                ease: [0.19, 1, 0.22, 1],
-                            }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
                             onMouseEnter={() => setHoveredId(item.id)}
                             onMouseLeave={() => setHoveredId(null)}
                         >
                             <div className={styles.mediaWrapper}>
-                                {item.type === 'image' ? (
+                                {hoveredId === item.id && item.videoSrc ? (
+                                    <video
+                                        src={item.videoSrc}
+                                        className={styles.media}
+                                        autoPlay
+                                        muted
+                                        loop
+                                        playsInline
+                                    />
+                                ) : (
                                     <Image
                                         src={item.src}
                                         alt={item.alt}
-                                        width={600}
-                                        height={400}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                         className={styles.media}
-                                    />
-                                ) : (
-                                    <video
-                                        src={item.src}
-                                        className={styles.media}
-                                        loop
-                                        muted
-                                        playsInline
+                                        priority={item.id <= 3} // Lazy load others
                                     />
                                 )}
-                                <div
-                                    className={`${styles.overlay} ${hoveredId === item.id ? styles.overlayVisible : ''
-                                        }`}
-                                >
-                                    <p className={styles.caption}>{item.caption}</p>
+                                <div className={styles.overlay}>
+                                    <h3 className={styles.caption}>{item.caption}</h3>
                                 </div>
                             </div>
                         </motion.div>

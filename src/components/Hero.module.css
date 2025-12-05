@@ -1,47 +1,57 @@
 .hero {
     position: relative;
-    min-height: 100vh;
+    height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     scroll-snap-align: start;
+    background: #050505;
+    padding: 0 2rem;
+}
+
+.backgroundWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.6;
 }
 
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.5rem;
-    padding: 2rem;
+    /* Removed gap to control spacing manually via margins */
+    gap: 0;
     text-align: center;
     z-index: 1;
+    position: relative;
+    max-width: 1000px;
 }
 
 /* Photo wrapper - contains the glow effect */
 .imageWrapper {
     position: relative;
-    width: 280px;
-    height: 280px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
+    /* "Cool" spacing between photo and title */
+    margin-bottom: 3rem;
 }
 
 /* Purple glow effect - positioned behind the image */
 .imageGlow {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(circle,
-            rgba(139, 92, 246, 0.8) 0%,
-            rgba(139, 92, 246, 0.5) 30%,
-            rgba(139, 92, 246, 0.2) 50%,
-            transparent 70%);
+    inset: -30px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
     filter: blur(30px);
     z-index: -1;
     border-radius: 50%;
+    opacity: 0.8;
 }
 
 /* The actual photo */
@@ -50,59 +60,57 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid rgba(255, 255, 255, 0.95);
-    background: #ffffff;
-    display: block;
-    position: relative;
-    z-index: 1;
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+    background: #000;
 }
 
 /* Title - Poppins Bold with normal spacing */
 .title {
-    font-size: clamp(3.5rem, 13vw, 9rem);
-    font-weight: 700;
-    line-height: 0.95;
+    /* Reduced size from previous huge value */
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
     letter-spacing: -0.02em;
     margin: 0;
-    color: #ffffff;
-    text-transform: capitalize;
+    color: var(--foreground);
+    font-family: var(--font-poppins), sans-serif;
 }
 
 /* Portfolio text with gradient */
 .titleAccent {
-    display: block;
-    background: linear-gradient(180deg, #ffffff 20%, #aaaaaa 100%);
+    background: linear-gradient(to bottom, #FFFFFF 0%, #AAAAAA 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-weight: 700;
-    letter-spacing: -0.02em;
 }
 
 /* Subtitle */
 .subtitle {
-    font-size: clamp(0.95rem, 2vw, 1.15rem);
-    color: rgba(255, 255, 255, 0.7);
-    max-width: 650px;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #aaa;
+    max-width: 600px;
     line-height: 1.6;
     margin: 0;
+    /* "Comfy" spacing between title and subtitle */
+    margin-top: 2.5rem;
+    font-family: var(--font-poppins), sans-serif;
     font-weight: 400;
 }
 
 /* Scroll indicator */
 .scrollIndicator {
     position: absolute;
-    bottom: 3rem;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
-    z-index: 2;
+    z-index: 1;
 }
 
 .scrollIcon {
-    width: 28px;
-    height: 28px;
-    color: rgba(255, 255, 255, 0.5);
+    width: 32px;
+    height: 32px;
+    color: var(--accent-dim);
 }
 
 @keyframes bounce {
@@ -120,11 +128,8 @@
 /* Responsive adjustments */
 @media (min-width: 768px) {
     .imageWrapper {
-        width: 350px;
-        height: 350px;
-    }
-
-    .content {
-        gap: 3rem;
+        width: 240px;
+        height: 240px;
+        margin-bottom: 4rem;
     }
 }

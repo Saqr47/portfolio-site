@@ -4,10 +4,16 @@ import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import styles from './Hero.module.css';
+import Silk from './Silk';
 
 export default function Hero() {
     return (
         <section className={styles.hero}>
+            {/* Background contained within Hero */}
+            <div className={styles.backgroundWrapper}>
+                <Silk speed={5} scale={1} color="#7B7481" noiseIntensity={1.5} rotation={0} />
+            </div>
+
             <div className={styles.content}>
                 <motion.div
                     className={styles.imageWrapper}
@@ -32,9 +38,9 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
                 >
-                    Creative
+                    CGI & DOOH
                     <br />
-                    <span className={styles.titleAccent}>Portfolio</span>
+                    <span className={styles.titleAccent}>Specialist</span>
                 </motion.h1>
 
                 <motion.p
@@ -43,7 +49,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.5, ease: [0.19, 1, 0.22, 1] }}
                 >
-                    A visual journey through design, innovation, and creativity
+                    Crafting immersive CGI experiences and dynamic DOOH campaigns
                 </motion.p>
             </div>
 

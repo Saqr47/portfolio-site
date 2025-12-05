@@ -1,0 +1,136 @@
+.footer {
+    background: #000000;
+    padding: 6rem 0 4rem;
+    color: #fff;
+    scroll-snap-align: start;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* CTA - Now the biggest element */
+.callToAction {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin: 0 0 1.5rem 0;
+    font-family: var(--font-poppins), sans-serif;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    /* Bright white for emphasis */
+}
+
+/* Identity - Significantly smaller and secondary */
+.identity {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 500;
+    margin: 0 0 2.5rem 0;
+    font-family: var(--font-poppins), sans-serif;
+    letter-spacing: 0.01em;
+    color: #aaa;
+    /* Softer color to recede */
+    line-height: 1.4;
+}
+
+.contactInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    color: #888;
+    font-size: 1rem;
+    font-family: var(--font-poppins), sans-serif;
+    font-weight: 400;
+    margin-bottom: 3rem;
+}
+
+.link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #fff;
+}
+
+.separator {
+    color: #444;
+}
+
+.button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 12px 32px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-poppins), sans-serif;
+    margin-bottom: 3rem;
+    border-radius: 4px;
+}
+
+.button:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+.socials {
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+}
+
+.socialIcon {
+    color: #fff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.socialIcon:hover {
+    transform: translateY(-3px);
+    opacity: 1;
+}
+
+.copyright {
+    margin-top: 4rem;
+    font-size: 0.8rem;
+    color: #444;
+    font-family: var(--font-poppins), sans-serif;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 4rem 0;
+    }
+
+    .contactInfo {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .separator {
+        display: none;
+    }
+}

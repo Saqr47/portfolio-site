@@ -1,14 +1,16 @@
 import Hero from "@/components/Hero";
 import Gallery from "@/components/Gallery";
-import Silk from "@/components/Silk";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
-      <Silk speed={5} scale={1} color="#7B7481" noiseIntensity={1.5} rotation={0} />
-      <Hero />
-      <Gallery />
+      {/* Main content */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <Hero />
+        <Gallery />
+        <Footer />
+      </div>
     </>
   );
 }
-

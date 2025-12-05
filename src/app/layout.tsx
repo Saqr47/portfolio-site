@@ -10,8 +10,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio | Premium Design",
-  description: "A visual journey through my work.",
+  title: "Ahmed Sakr | CGI Artist - DOOH Specialist",
+  description: "Crafting immersive CGI experiences and dynamic DOOH campaigns.",
 };
 
 export default function RootLayout({
