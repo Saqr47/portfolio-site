@@ -7,7 +7,8 @@
     justify-content: center;
     overflow: hidden;
     scroll-snap-align: start;
-    background: #050505;
+    /* Transparent background for global LiquidEther */
+    background: transparent;
     padding: 0 2rem;
 }
 
@@ -19,13 +20,13 @@
     height: 100%;
     z-index: 0;
     opacity: 0.6;
+    pointer-events: none;
 }
 
 .content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* Removed gap to control spacing manually via margins */
     gap: 0;
     text-align: center;
     z-index: 1;
@@ -39,7 +40,6 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    /* "Cool" spacing between photo and title */
     margin-bottom: 3rem;
 }
 
@@ -81,10 +81,9 @@
     font-family: var(--font-poppins), sans-serif;
 }
 
-/* Portfolio text with gradient */
+/* Portfolio text with gradient - MATCHING TITLE EXACTLY */
 .titleAccent {
-    /* Slightly more transparent at the bottom for interaction */
-    background: linear-gradient(to bottom, #FFFFFF 20%, rgba(255, 255, 255, 0.4) 100%);
+    background: linear-gradient(to bottom, #FFFFFF 40%, rgba(255, 255, 255, 0.6) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -103,7 +102,6 @@
     max-width: 600px;
     line-height: 1.6;
     margin: 0;
-    /* "Comfy" spacing between title and subtitle */
     margin-top: 2.5rem;
     font-family: var(--font-poppins), sans-serif;
     font-weight: 400;

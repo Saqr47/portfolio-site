@@ -4,30 +4,14 @@ import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import styles from './Hero.module.css';
-import LiquidEther from './LiquidEther';
+
 
 export default function Hero() {
     return (
         <section className={styles.hero}>
             {/* Background contained within Hero */}
             <div className={styles.backgroundWrapper}>
-                <LiquidEther
-                    colors={['#5227FF', '#FF9FFC', '#B19EEF']}
-                    mouseForce={20}
-                    cursorSize={100}
-                    isViscous={false}
-                    viscous={30}
-                    iterationsViscous={32}
-                    iterationsPoisson={32}
-                    resolution={0.5}
-                    isBounce={false}
-                    autoDemo={true}
-                    autoSpeed={0.5}
-                    autoIntensity={2.2}
-                    takeoverDuration={0.25}
-                    autoResumeDelay={3000}
-                    autoRampDuration={0.6}
-                />
+                {/* Global background is now in page.tsx */}
             </div>
 
             <div className={styles.content}>
