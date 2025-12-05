@@ -42,15 +42,15 @@
     margin-bottom: 3rem;
 }
 
-/* Glow effect */
+/* Glow effect - Purple to match LiquidEther background */
 .imageGlow {
     position: absolute;
-    inset: -30px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-    filter: blur(30px);
+    inset: -40px;
+    background: radial-gradient(circle, rgba(82, 39, 255, 0.6) 0%, transparent 70%);
+    filter: blur(40px);
     z-index: -1;
     border-radius: 50%;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 /* The actual photo */
