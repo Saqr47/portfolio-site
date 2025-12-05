@@ -3,7 +3,7 @@
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { forwardRef, useRef, useMemo, useLayoutEffect } from 'react';
-import { Color } from 'three';
+import { Color, Mesh } from 'three';
 
 const hexToNormalizedRGB = (hex: string) => {
     hex = hex.replace('#', '');
@@ -74,17 +74,18 @@ interface SilkPlaneProps {
     uniforms: any;
 }
 
-const SilkPlane = forwardRef<any, SilkPlaneProps>(function SilkPlane({ uniforms }, ref) {
+const SilkPlane = forwardRef<Mesh, SilkPlaneProps>(function SilkPlane({ uniforms }, ref) {
     const { viewport } = useThree();
 
     useLayoutEffect(() => {
-        if (ref && typeof ref !== 'function' && ref.current) {
+        if (ref && 'current' in ref && ref.current) {
             ref.current.scale.set(viewport.width, viewport.height, 1);
         }
     }, [ref, viewport]);
 
     useFrame((_, delta) => {
-        if (ref && typeof ref !== 'function' && ref.current) {
+        if (ref && 'current' in ref && ref.current) {
+            // @ts-ignore - shaderMaterial uniforms access
             ref.current.material.uniforms.uTime.value += 0.1 * delta;
         }
     });
@@ -107,7 +108,7 @@ interface SilkProps {
 }
 
 const Silk = ({ speed = 5, scale = 1, color = '#8B5CF6', noiseIntensity = 1.5, rotation = 0 }: SilkProps) => {
-    const meshRef = useRef();
+    const meshRef = useRef<Mesh>(null);
 
     const uniforms = useMemo(() => {
         const rgb = hexToNormalizedRGB(color);
