@@ -43,15 +43,15 @@
     margin-bottom: 3rem;
 }
 
-/* Purple glow effect - positioned behind the image */
+/* Glow effect - Subtle white to blend with LiquidEther */
 .imageGlow {
     position: absolute;
     inset: -30px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
     filter: blur(30px);
     z-index: -1;
     border-radius: 50%;
-    opacity: 0.8;
+    opacity: 0.6;
 }
 
 /* The actual photo */
@@ -60,34 +60,46 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
     background: #000;
 }
 
-/* Title - Poppins Bold with normal spacing */
+/* Title - Gradient White */
 .title {
-    /* Reduced size from previous huge value */
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin: 0;
-    color: var(--foreground);
+
+    /* Gradient from Solid White to Semi-Transparent */
+    background: linear-gradient(to bottom, #FFFFFF 40%, rgba(255, 255, 255, 0.6) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
     font-family: var(--font-poppins), sans-serif;
 }
 
 /* Portfolio text with gradient */
 .titleAccent {
-    background: linear-gradient(to bottom, #FFFFFF 0%, #AAAAAA 100%);
+    /* Slightly more transparent at the bottom for interaction */
+    background: linear-gradient(to bottom, #FFFFFF 20%, rgba(255, 255, 255, 0.4) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* Subtitle */
+/* Subtitle - Subtle Gradient */
 .subtitle {
     font-size: clamp(1rem, 2vw, 1.25rem);
-    color: #aaa;
+
+    /* Gradient text for subtitle too */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
     max-width: 600px;
     line-height: 1.6;
     margin: 0;

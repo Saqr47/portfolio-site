@@ -22,27 +22,35 @@
     width: 100%;
 }
 
-/* CTA - Now the biggest element */
+/* CTA - Now the biggest element with Gradient */
 .callToAction {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
     margin: 0 0 1.5rem 0;
     font-family: var(--font-poppins), sans-serif;
     letter-spacing: -0.02em;
-    color: #ffffff;
-    /* Bright white for emphasis */
+
+    /* Gradient White - Matching Hero */
+    background: linear-gradient(to bottom, #FFFFFF 30%, rgba(255, 255, 255, 0.6) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-/* Identity - Significantly smaller and secondary */
+/* Identity - Significantly smaller and secondary with subtle gradient */
 .identity {
     font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     font-weight: 500;
     margin: 0 0 2.5rem 0;
     font-family: var(--font-poppins), sans-serif;
     letter-spacing: 0.01em;
-    color: #aaa;
-    /* Softer color to recede */
     line-height: 1.4;
+
+    /* Subtle Gradient - Matching Hero Subtitle style */
+    background: linear-gradient(to bottom, #aaaaaa 0%, rgba(170, 170, 170, 0.6) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .contactInfo {
