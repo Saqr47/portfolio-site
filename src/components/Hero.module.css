@@ -7,7 +7,6 @@
     justify-content: center;
     overflow: hidden;
     scroll-snap-align: start;
-    /* Transparent background for global LiquidEther */
     background: transparent;
     padding: 0 2rem;
 }
@@ -34,7 +33,7 @@
     max-width: 1000px;
 }
 
-/* Photo wrapper - contains the glow effect */
+/* Photo wrapper */
 .imageWrapper {
     position: relative;
     width: 200px;
@@ -43,7 +42,7 @@
     margin-bottom: 3rem;
 }
 
-/* Glow effect - Subtle white to blend with LiquidEther */
+/* Glow effect */
 .imageGlow {
     position: absolute;
     inset: -30px;
@@ -64,7 +63,7 @@
     background: #000;
 }
 
-/* Title - Gradient White */
+/* Title - Gradient White (Adjusted for Hero to avoid gray P) */
 .title {
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 800;
@@ -72,8 +71,8 @@
     letter-spacing: -0.02em;
     margin: 0;
 
-    /* Gradient from Solid White to Semi-Transparent */
-    background: linear-gradient(to bottom, #FFFFFF 40%, rgba(255, 255, 255, 0.6) 100%);
+    /* Gradient from Solid White to Less Transparent (50% -> 80% opacity) */
+    background: linear-gradient(to bottom, #FFFFFF 50%, rgba(255, 255, 255, 0.8) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -81,9 +80,9 @@
     font-family: var(--font-poppins), sans-serif;
 }
 
-/* Portfolio text with gradient - MATCHING TITLE EXACTLY */
+/* Portfolio text - Matching Title Gradient */
 .titleAccent {
-    background: linear-gradient(to bottom, #FFFFFF 40%, rgba(255, 255, 255, 0.6) 100%);
+    background: linear-gradient(to bottom, #FFFFFF 50%, rgba(255, 255, 255, 0.8) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
