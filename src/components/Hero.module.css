@@ -63,7 +63,7 @@
     background: #000;
 }
 
-/* Title - Gradient White (Adjusted for Hero to avoid gray P) */
+/* Title - Gradient White to Light Gray (Solid, no transparency) */
 .title {
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 800;
@@ -71,8 +71,8 @@
     letter-spacing: -0.02em;
     margin: 0;
 
-    /* Gradient from Solid White to Less Transparent (50% -> 80% opacity) */
-    background: linear-gradient(to bottom, #FFFFFF 50%, rgba(255, 255, 255, 0.8) 100%);
+    /* Gradient from Solid White to Solid Light Gray (Avoids transparency issues on descenders) */
+    background: linear-gradient(to bottom, #FFFFFF 70%, #E0E0E0 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -82,7 +82,7 @@
 
 /* Portfolio text - Matching Title Gradient */
 .titleAccent {
-    background: linear-gradient(to bottom, #FFFFFF 50%, rgba(255, 255, 255, 0.8) 100%);
+    background: linear-gradient(to bottom, #FFFFFF 70%, #E0E0E0 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
