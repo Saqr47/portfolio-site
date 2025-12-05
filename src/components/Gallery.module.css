@@ -1,7 +1,11 @@
 .gallery {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     padding: 8rem 0;
-    background: var(--background);
+    background: #000000;
     scroll-snap-align: start;
+    position: relative;
+    z-index: 1;
 }
 
 .title {
@@ -38,10 +42,11 @@
     aspect-ratio: 3 / 2;
     overflow: hidden;
     border-radius: 12px;
-    background: var(--surface);
+    background: #000000;
     border: 1px solid var(--border);
     cursor: pointer;
     transition: transform 0.4s var(--ease-out-expo);
+    z-index: 2;
 }
 
 .gridItem:hover {
