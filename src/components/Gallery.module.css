@@ -1,9 +1,9 @@
 .gallery {
-    background: var(--background);
+    background: transparent;
     position: relative;
     z-index: 10;
-    scroll-snap-align: start;
-    padding: 0;
+    padding: 6rem 0;
+    overflow: hidden;
 }
 
 .container {
@@ -13,28 +13,56 @@
 }
 
 .header {
-    display: none !important;
+    max-width: 1400px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
 }
 
-.heading {
-    display: none !important;
+.sectionTitle {
+    font-family: var(--font-poppins), sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: #888;
+    text-transform: uppercase;
+    margin: 0;
 }
 
-.subheading {
-    display: none !important;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-}
-
-.gridItem {
+/* Marquee Wrapper with Fade Mask */
+.marqueeWrapper {
     position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    display: flex;
+    /* Mask for fading edges "piece by piece" / smoothly */
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.marqueeTrack {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Card Styling */
+.card {
+    position: relative;
+    width: 450px;
     aspect-ratio: 16/9;
+    border-radius: 16px;
     overflow: hidden;
     background: #111;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    transform: translateZ(0);
+}
+
+.card:hover {
+    transform: scale(0.98);
 }
 
 .mediaWrapper {
@@ -48,45 +76,112 @@
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.5s var(--ease-out-expo);
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.gridItem:hover .media {
+.card:hover .media {
     transform: scale(1.05);
 }
 
-.overlay {
+/* Gradient Overlay */
+.overlayGradient {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0) 60%);
+    pointer-events: none;
+}
+
+/* Top Right Icon */
+.topIcon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transform: translate(-10px, 10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.gridItem:hover .overlay {
+.card:hover .topIcon {
     opacity: 1;
+    transform: translate(0, 0);
 }
 
-.caption {
+/* Card Content (Bottom Left) */
+.cardContent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    z-index: 2;
+    transform: translateY(10px);
+    transition: transform 0.4s ease;
+}
+
+.card:hover .cardContent {
+    transform: translateY(0);
+}
+
+.projectTitle {
     color: #fff;
     font-family: var(--font-poppins), sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    margin: 0 0 0.25rem 0;
+    line-height: 1.2;
 }
 
-@media (max-width: 1024px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
+.projectCategory {
+    color: #ccc;
+    font-family: var(--font-poppins), sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* Footer Button */
+.footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.seeAllButton {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 14px 36px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-poppins), sans-serif;
+    letter-spacing: 0.02em;
+}
+
+.seeAllButton:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card {
+        width: 320px;
     }
-}
 
-@media (max-width: 640px) {
-    .grid {
-        grid-template-columns: 1fr;
+    .header {
+        padding: 0 1.5rem;
     }
 }

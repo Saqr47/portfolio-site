@@ -30,23 +30,26 @@
     text-align: center;
     z-index: 1;
     position: relative;
-    max-width: 1000px;
+    max-width: 900px;
+    /* Slightly constrained for better readability */
 }
 
 /* Photo wrapper */
 .imageWrapper {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    /* Slightly smaller for elegance */
+    height: 180px;
     border-radius: 50%;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
+    /* More breathing room */
 }
 
 /* Glow effect - Purple to match LiquidEther background */
 .imageGlow {
     position: absolute;
     inset: -40px;
-    background: radial-gradient(circle, rgba(82, 39, 255, 0.6) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(82, 39, 255, 0.5) 0%, transparent 70%);
     filter: blur(40px);
     z-index: -1;
     border-radius: 50%;
@@ -59,20 +62,24 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.08);
+    /* Softer shadow */
     background: #000;
 }
 
-/* Title - Gradient White to Light Gray (Solid, no transparency) */
+/* Title - Ahmed Sakr */
 .title {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 800;
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    /* Balanced size */
+    font-weight: 700;
+    /* Slightly less heavy than 800 for cleaner look */
     line-height: 1.1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    /* Tighter tracking for modern feel */
     margin: 0;
 
-    /* Gradient from Solid White to Solid Light Gray (Avoids transparency issues on descenders) */
-    background: linear-gradient(to bottom, #FFFFFF 70%, #E0E0E0 100%);
+    /* Solid White Gradient */
+    background: linear-gradient(to bottom, #FFFFFF 60%, #D0D0D0 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -80,46 +87,55 @@
     font-family: var(--font-poppins), sans-serif;
 }
 
-/* Portfolio text - Matching Title Gradient */
-.titleAccent {
-    background: linear-gradient(to bottom, #FFFFFF 70%, #E0E0E0 100%);
+/* Role Subtitle - CGI Artist · DOOH Specialist */
+.roleSubtitle {
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+    font-weight: 500;
+    /* Medium weight for contrast with title */
+    margin: 1.2rem 0 0 0;
+    /* Increased spacing */
+    font-family: var(--font-poppins), sans-serif;
+    letter-spacing: 0.05em;
+    /* Wider tracking for sophistication */
+
+    /* Matching Gradient */
+    background: linear-gradient(to bottom, #FFFFFF 80%, #BBBBBB 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* Subtitle - Subtle Gradient */
+/* Subtitle Sentence */
 .subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-
-    /* Gradient text for subtitle too */
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    max-width: 600px;
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    color: rgba(255, 255, 255, 0.6);
+    /* More subtle text color */
+    max-width: 500px;
+    /* Constrained width for better line length */
     line-height: 1.6;
     margin: 0;
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
     font-family: var(--font-poppins), sans-serif;
     font-weight: 400;
+    letter-spacing: 0.02em;
 }
 
 /* Scroll indicator */
 .scrollIndicator {
     position: absolute;
-    bottom: 2rem;
+    bottom: 2.5rem;
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
     z-index: 1;
+    opacity: 0.7;
 }
 
 .scrollIcon {
-    width: 32px;
-    height: 32px;
-    color: var(--accent-dim);
+    width: 28px;
+    /* Slightly smaller icon */
+    height: 28px;
+    color: #fff;
 }
 
 @keyframes bounce {
@@ -130,15 +146,15 @@
     }
 
     50% {
-        transform: translateX(-50%) translateY(10px);
+        transform: translateX(-50%) translateY(8px);
     }
 }
 
 /* Responsive adjustments */
 @media (min-width: 768px) {
     .imageWrapper {
-        width: 240px;
-        height: 240px;
-        margin-bottom: 4rem;
+        width: 220px;
+        height: 220px;
+        margin-bottom: 4.5rem;
     }
 }
