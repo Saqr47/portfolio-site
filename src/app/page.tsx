@@ -25,6 +25,7 @@ export default function Home() {
           autoResumeDelay={3000}
           autoRampDuration={0.6}
         />
+        <div className="global-grid-overlay" />
       </div>
 
       {/* Main content */}
