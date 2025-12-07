@@ -16,7 +16,7 @@ export default function Footer() {
                     transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
                 >
                     <h3 className={styles.callToAction}>Like what you see?</h3>
-                    <h2 className={styles.identity}>Ahmed Sakr — CGI Artist · DOOH Specialist</h2>
+                    <h2 className={styles.identity}>Contact me and let's work together</h2>
 
                     <div className={styles.contactInfo}>
                         <a href="mailto:ahmedaesakr@gmail.com" className={styles.link}>ahmedaesakr@gmail.com</a>
