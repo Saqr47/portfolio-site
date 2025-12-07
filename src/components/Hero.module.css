@@ -145,13 +145,15 @@
 .badgeTopRight {
     top: 5%;
     right: -30px;
-    transform: rotate(5deg);
+    --rotation: 5deg;
+    animation: float 6s ease-in-out infinite;
 }
 
 .badgeBottomLeft {
     bottom: 10%;
     left: -40px;
-    transform: rotate(-5deg);
+    --rotation: -5deg;
+    animation: float 7s ease-in-out infinite reverse;
 }
 
 /* Bottom Bar */
@@ -236,5 +238,17 @@
         align-items: center;
         text-align: center;
         gap: 2rem;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(var(--rotation));
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(var(--rotation));
     }
 }
