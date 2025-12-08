@@ -82,7 +82,11 @@ export default function Gallery() {
                         onClick={closeLightbox}
                     >
                         {/* Close Button */}
-                        <button className={styles.closeButton} onClick={closeLightbox}>
+                        <button
+                            className={styles.closeButton}
+                            onClick={closeLightbox}
+                            aria-label="Close lightbox"
+                        >
                             <X size={32} />
                         </button>
 
@@ -93,6 +97,7 @@ export default function Gallery() {
                                 e.stopPropagation();
                                 goToPrevious();
                             }}
+                            aria-label="Previous image"
                         >
                             <ChevronLeft size={40} />
                         </button>
@@ -103,6 +108,7 @@ export default function Gallery() {
                                 e.stopPropagation();
                                 goToNext();
                             }}
+                            aria-label="Next image"
                         >
                             <ChevronRight size={40} />
                         </button>
