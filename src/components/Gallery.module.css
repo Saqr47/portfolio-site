@@ -2,7 +2,7 @@
     background: transparent;
     position: relative;
     z-index: 10;
-    padding: 6rem 0;
+    padding: clamp(4rem, 8vh, 6rem) 0;
     overflow: hidden;
 }
 
@@ -14,13 +14,13 @@
 
 .header {
     max-width: 1400px;
-    margin: 0 auto 3rem;
-    padding: 0 2rem;
+    margin: 0 auto clamp(2rem, 4vh, 3rem);
+    padding: 0 clamp(1rem, 4vw, 2rem);
 }
 
 .sectionTitle {
     font-family: var(--font-poppins), sans-serif;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
     font-weight: 600;
     letter-spacing: 0.15em;
     color: #888;
@@ -33,7 +33,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1.5rem, 3vh, 2rem);
     display: flex;
     /* Mask for fading edges "piece by piece" / smoothly */
     mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
@@ -42,7 +42,7 @@
 
 .marqueeTrack {
     display: flex;
-    gap: 1.5rem;
+    gap: clamp(1rem, 2.5vw, 1.5rem);
     width: max-content;
     will-change: transform;
     transform: translateZ(0);
@@ -51,9 +51,9 @@
 /* Card Styling */
 .card {
     position: relative;
-    width: 450px;
+    width: clamp(300px, 25vw, 450px);
     aspect-ratio: 16/9;
-    border-radius: 16px;
+    border-radius: clamp(12px, 2vw, 16px);
     overflow: hidden;
     background: #111;
     flex-shrink: 0;
@@ -94,12 +94,12 @@
 /* Top Right Icon */
 .topIcon {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: clamp(0.75rem, 2vw, 1rem);
+    right: clamp(0.75rem, 2vw, 1rem);
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(4px);
-    width: 36px;
-    height: 36px;
+    width: clamp(32px, 5vw, 36px);
+    height: clamp(32px, 5vw, 36px);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -120,7 +120,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 2rem;
+    padding: clamp(1.5rem, 3vw, 2rem);
     z-index: 2;
     transform: translateY(10px);
     transition: transform 0.4s ease;
@@ -134,7 +134,7 @@
     color: #fff;
     font-family: var(--font-poppins), sans-serif;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     margin: 0 0 0.25rem 0;
     line-height: 1.2;
 }
@@ -143,7 +143,7 @@
     color: #ccc;
     font-family: var(--font-poppins), sans-serif;
     font-weight: 400;
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
     margin: 0;
     opacity: 0.8;
 }
@@ -152,15 +152,15 @@
 .footer {
     display: flex;
     justify-content: center;
-    margin-top: 4rem;
+    margin-top: clamp(3rem, 6vh, 4rem);
 }
 
 .seeAllButton {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
-    padding: 14px 36px;
-    font-size: 0.9rem;
+    padding: clamp(0.75rem, 2vw, 0.875rem) clamp(1.5rem, 4vw, 2.25rem);
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
     font-weight: 500;
     border-radius: 8px;
     cursor: pointer;
@@ -175,13 +175,72 @@
     border-color: #fff;
 }
 
-/* Responsive */
+/* Responsive - Tablets */
+@media (max-width: 1024px) {
+    .gallery {
+        padding: clamp(3rem, 6vh, 5rem) 0;
+    }
+}
+
+/* Small Tablets - NEW breakpoint */
 @media (max-width: 768px) {
     .card {
-        width: 320px;
+        width: clamp(280px, 75vw, 350px);
     }
 
     .header {
-        padding: 0 1.5rem;
+        padding: 0 clamp(1rem, 3vw, 1.5rem);
+    }
+
+    .cardContent {
+        padding: clamp(1.25rem, 2.5vw, 1.5rem);
+    }
+
+    .marqueeTrack {
+        gap: clamp(0.75rem, 2vw, 1rem);
+    }
+}
+
+/* Small Tablets Portrait */
+@media (max-width: 600px) {
+    .gallery {
+        padding: 4rem 0;
+    }
+
+    .card {
+        width: clamp(260px, 80vw, 320px);
+    }
+
+    .projectTitle {
+        font-size: 1.2rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .gallery {
+        padding: 3rem 0;
+    }
+
+    .card {
+        width: 85vw;
+        border-radius: 12px;
+    }
+
+    .cardContent {
+        padding: 1.25rem;
+    }
+
+    .projectTitle {
+        font-size: 1.1rem;
+    }
+
+    .projectCategory {
+        font-size: 0.8rem;
+    }
+
+    .seeAllButton {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.8rem;
     }
 }

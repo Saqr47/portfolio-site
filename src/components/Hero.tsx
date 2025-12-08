@@ -107,7 +107,7 @@ export default function Hero() {
                                     fill="transparent"
                                 />
                                 <text>
-                                    <textPath href="#curve" fill="white" fontSize="11" letterSpacing="0.1em">
+                                    <textPath href="#curve" fill="white" fontSize="10" letterSpacing="0.12em">
                                         SCROLL DOWN • DISCOVER MORE •
                                     </textPath>
                                 </text>

@@ -12,9 +12,14 @@
   --font-heading: var(--font-poppins);
   --font-body: var(--font-poppins);
 
-  /* Spacing */
+  /* Spacing - Fluid responsive values */
   --container-width: 1400px;
-  --header-height: 80px;
+  --header-height: clamp(60px, 10vh, 80px);
+  --spacing-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --spacing-sm: clamp(0.75rem, 2vw, 1rem);
+  --spacing-md: clamp(1rem, 3vw, 1.5rem);
+  --spacing-lg: clamp(1.5rem, 4vw, 2rem);
+  --spacing-xl: clamp(2rem, 6vw, 3rem);
 
   /* Animation */
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
@@ -23,6 +28,21 @@
 html {
   scroll-behavior: smooth;
   /* scroll-snap-type removed for normal sliding */
+  font-size: 16px;
+  /* Base font size for rem calculations */
+}
+
+/* Responsive base font size */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
 }
 
 body {
@@ -32,11 +52,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  line-height: 1.5;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: clamp(6px, 1vw, 8px);
 }
 
 ::-webkit-scrollbar-track {
@@ -56,7 +77,7 @@ body {
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 5vw, 2rem);
 }
 
 .glass {
@@ -83,8 +104,8 @@ body {
   z-index: 0;
   pointer-events: none;
 
-  /* Professional Grid Pattern */
-  background-size: 60px 60px;
+  /* Professional Grid Pattern - Responsive sizing */
+  background-size: clamp(40px, 8vw, 60px) clamp(40px, 8vw, 60px);
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
@@ -99,6 +120,25 @@ body {
   }
 
   100% {
-    background-position: 60px 60px;
+    background-position: clamp(40px, 8vw, 60px) clamp(40px, 8vw, 60px);
+  }
+}
+
+/* Responsive utility classes */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 clamp(1rem, 4vw, 1.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 clamp(1rem, 3vw, 1.25rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
   }
 }
