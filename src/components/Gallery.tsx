@@ -2,13 +2,13 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Gallery.module.css';
 import { ArrowUpRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface MediaItem {
     id: number;
-    src: string;
+    images: string[];
     videoSrc?: string;
     alt: string;
     title: string;
@@ -16,39 +16,72 @@ interface MediaItem {
 }
 
 const projects: MediaItem[] = [
-    { id: 1, src: '/gallery-1.jpg', videoSrc: 'https://cdn.coverr.co/videos/coverr-abstract-colorful-fluid-5392/1080p.mp4', alt: 'Abstract Fluid', title: 'Fluid Simulation', category: 'CGI Project' },
-    { id: 2, src: '/gallery-2.jpg', videoSrc: 'https://cdn.coverr.co/videos/coverr-modern-architecture-building-5243/1080p.mp4', alt: 'Architecture', title: 'Urban Heights', category: 'CGI Environment' },
-    { id: 3, src: '/gallery-3.jpg', videoSrc: 'https://cdn.coverr.co/videos/coverr-foggy-mountains-2664/1080p.mp4', alt: 'Landscape', title: 'Misty Peaks', category: 'Environment Design' },
-    { id: 4, src: '/gallery-4.jpg', videoSrc: 'https://cdn.coverr.co/videos/coverr-luxury-watch-4632/1080p.mp4', alt: 'Watch', title: 'Timeless Elegance', category: 'Product Visualization' },
-    { id: 5, src: '/gallery-5.jpg', videoSrc: 'https://cdn.coverr.co/videos/coverr-night-city-traffic-4532/1080p.mp4', alt: 'City', title: 'Night Velocity', category: 'CGI Motion' },
-    { id: 6, src: '/gallery-6.jpg', videoSrc: 'https://cdn.coverr.co/videos/coverr-ink-in-water-18/1080p.mp4', alt: 'Ink', title: 'Ink Dynamics', category: 'Abstract CGI' },
-    { id: 7, src: '/gallery-1.jpg', videoSrc: 'https://cdn.coverr.co/videos/coverr-abstract-colorful-fluid-5392/1080p.mp4', alt: 'Neon', title: 'Neon Pulse', category: 'CGI Art' },
-    { id: 8, src: '/gallery-2.jpg', videoSrc: 'https://cdn.coverr.co/videos/coverr-modern-architecture-building-5243/1080p.mp4', alt: 'Future', title: 'Future Structure', category: 'Architectural Viz' },
+    {
+        id: 1,
+        images: ['/mannequin-1.png', '/mannequin-2.png'],
+        alt: 'Mannequin Render',
+        title: 'Mannequin',
+        category: '3D Character Art'
+    },
+    { id: 2, images: ['/gallery-2.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-modern-architecture-building-5243/1080p.mp4', alt: 'Architecture', title: 'Urban Heights', category: 'CGI Environment' },
+    { id: 3, images: ['/gallery-3.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-foggy-mountains-2664/1080p.mp4', alt: 'Landscape', title: 'Misty Peaks', category: 'Environment Design' },
+    { id: 4, images: ['/gallery-4.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-luxury-watch-4632/1080p.mp4', alt: 'Watch', title: 'Timeless Elegance', category: 'Product Visualization' },
+    { id: 5, images: ['/gallery-5.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-night-city-traffic-4532/1080p.mp4', alt: 'City', title: 'Night Velocity', category: 'CGI Motion' },
+    { id: 6, images: ['/gallery-6.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-ink-in-water-18/1080p.mp4', alt: 'Ink', title: 'Ink Dynamics', category: 'Abstract CGI' },
+    { id: 7, images: ['/gallery-1.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-abstract-colorful-fluid-5392/1080p.mp4', alt: 'Neon', title: 'Neon Pulse', category: 'CGI Art' },
+    { id: 8, images: ['/gallery-2.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-modern-architecture-building-5243/1080p.mp4', alt: 'Future', title: 'Future Structure', category: 'Architectural Viz' },
 ];
 
 export default function Gallery() {
     const [hoveredId, setHoveredId] = useState<number | null>(null);
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+
+    // Keyboard Navigation
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (selectedIndex === null) return;
+
+            switch (e.key) {
+                case 'ArrowLeft':
+                    goToPrevious();
+                    break;
+                case 'ArrowRight':
+                    goToNext();
+                    break;
+                case 'Escape':
+                    closeLightbox();
+                    break;
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedIndex, currentImageIndex]); // Dependencies ensure fresh state
 
     const openLightbox = (index: number) => {
         setSelectedIndex(index);
+        setCurrentImageIndex(0);
         document.body.style.overflow = 'hidden';
     };
 
     const closeLightbox = () => {
         setSelectedIndex(null);
+        setCurrentImageIndex(0);
         document.body.style.overflow = 'unset';
     };
 
     const goToPrevious = () => {
         if (selectedIndex !== null) {
-            setSelectedIndex((selectedIndex - 1 + projects.length) % projects.length);
+            const images = projects[selectedIndex].images;
+            setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
         }
     };
 
     const goToNext = () => {
         if (selectedIndex !== null) {
-            setSelectedIndex((selectedIndex + 1) % projects.length);
+            const images = projects[selectedIndex].images;
+            setCurrentImageIndex((prev) => (prev + 1) % images.length);
         }
     };
 
@@ -90,28 +123,32 @@ export default function Gallery() {
                             <X size={32} />
                         </button>
 
-                        {/* Navigation Buttons */}
-                        <button
-                            className={`${styles.navButton} ${styles.prevButton}`}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                goToPrevious();
-                            }}
-                            aria-label="Previous image"
-                        >
-                            <ChevronLeft size={40} />
-                        </button>
+                        {/* Navigation Buttons - Only show if multiple images */}
+                        {projects[selectedIndex].images.length > 1 && (
+                            <>
+                                <button
+                                    className={`${styles.navButton} ${styles.prevButton}`}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        goToPrevious();
+                                    }}
+                                    aria-label="Previous image"
+                                >
+                                    <ChevronLeft size={40} />
+                                </button>
 
-                        <button
-                            className={`${styles.navButton} ${styles.nextButton}`}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                goToNext();
-                            }}
-                            aria-label="Next image"
-                        >
-                            <ChevronRight size={40} />
-                        </button>
+                                <button
+                                    className={`${styles.navButton} ${styles.nextButton}`}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        goToNext();
+                                    }}
+                                    aria-label="Next image"
+                                >
+                                    <ChevronRight size={40} />
+                                </button>
+                            </>
+                        )}
 
                         {/* Image Container */}
                         <motion.div
@@ -121,27 +158,30 @@ export default function Gallery() {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             transition={{ duration: 0.3 }}
+                            key={currentImageIndex}
                         >
                             <div className={styles.lightboxImageWrapper}>
                                 <Image
-                                    src={projects[selectedIndex].src}
-                                    alt={projects[selectedIndex].alt}
+                                    src={projects[selectedIndex].images[currentImageIndex]}
+                                    alt={`${projects[selectedIndex].alt} - View ${currentImageIndex + 1}`}
                                     fill
                                     className={styles.lightboxMedia}
-                                    sizes="90vw"
+                                    sizes="95vw"
                                     priority
                                 />
                             </div>
                             <div className={styles.lightboxInfo}>
                                 <h2 className={styles.lightboxTitle}>{projects[selectedIndex].title}</h2>
                                 <p className={styles.lightboxCategory}>{projects[selectedIndex].category}</p>
+
+                                {/* Counter - Moved inside info to prevent overlap */}
+                                {projects[selectedIndex].images.length > 1 && (
+                                    <div className={styles.counter}>
+                                        {currentImageIndex + 1} / {projects[selectedIndex].images.length}
+                                    </div>
+                                )}
                             </div>
                         </motion.div>
-
-                        {/* Counter */}
-                        <div className={styles.counter}>
-                            {selectedIndex + 1} / {projects.length}
-                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -182,13 +222,32 @@ function Card({ item, hoveredId, setHoveredId, index, onClick }: {
                         playsInline
                     />
                 ) : (
-                    <Image
-                        src={item.src}
-                        alt={item.alt}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className={styles.media}
-                    />
+                    <>
+                        {/* Primary Image */}
+                        <Image
+                            src={item.images[0]}
+                            alt={item.alt}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                            className={styles.media}
+                        />
+
+                        {/* Secondary Image (Reveal on Hover) */}
+                        {item.images[1] && (
+                            <Image
+                                src={item.images[1]}
+                                alt={`${item.alt} - Alternate View`}
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                                className={`${styles.media} ${styles.secondaryMedia}`}
+                                style={{
+                                    opacity: hoveredId === item.id ? 1 : 0,
+                                    zIndex: 2,
+                                    transition: 'opacity 0.5s ease-in-out'
+                                }}
+                            />
+                        )}
+                    </>
                 )}
 
                 <div className={styles.overlayGradient} />

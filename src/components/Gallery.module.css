@@ -134,37 +134,47 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(2rem, 5vh, 4rem);
+    padding: clamp(1rem, 3vh, 2rem);
     backdrop-filter: blur(10px);
 }
 
 .lightboxContent {
     position: relative;
-    max-width: 90vw;
-    max-height: 90vh;
+    width: 100%;
+    max-width: 1600px;
+    height: 90vh;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
 }
 
 .lightboxImageWrapper {
     position: relative;
     width: 100%;
-    height: 80vh;
-    border-radius: 12px;
+    height: 100%;
+    flex: 1;
+    border-radius: 4px;
     overflow: hidden;
-    background: #000;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .lightboxMedia {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .lightboxInfo {
     text-align: center;
     padding: 1rem 0;
+    flex-shrink: 0;
 }
 
 .lightboxTitle {
@@ -242,20 +252,18 @@
 
 /* Counter */
 .counter {
-    position: fixed;
-    bottom: clamp(1.5rem, 3vh, 2rem);
-    left: 50%;
-    transform: translateX(-50%);
+    display: inline-block;
+    margin-top: 1rem;
+    /* Vertical spacing from category */
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1.25rem;
     border-radius: 50px;
     font-family: var(--font-poppins), sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     backdrop-filter: blur(10px);
-    z-index: 10000;
 }
 
 /* Tablet Landscape: 3 columns */
@@ -367,8 +375,8 @@
     }
 
     .counter {
-        bottom: 1rem;
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
+        /* No special positioning needed for mobile as it flows naturally */
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
     }
 }
