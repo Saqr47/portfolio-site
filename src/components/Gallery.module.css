@@ -2,67 +2,43 @@
     background: transparent;
     position: relative;
     z-index: 10;
-    padding: clamp(4rem, 8vh, 6rem) 0;
-    overflow: hidden;
+    padding: clamp(4rem, 8vh, 6rem) 0 clamp(2rem, 4vh, 3rem) 0;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .container {
     max-width: 100%;
-    margin: 0;
-    padding: 0;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 2vw, 1.5rem);
+    overflow-x: hidden;
 }
 
-.header {
-    max-width: 1400px;
-    margin: 0 auto clamp(2rem, 4vh, 3rem);
-    padding: 0 clamp(1rem, 4vw, 2rem);
-}
-
-.sectionTitle {
-    font-family: var(--font-poppins), sans-serif;
-    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    color: #888;
-    text-transform: uppercase;
-    margin: 0;
-}
-
-/* Marquee Wrapper with Fade Mask */
-.marqueeWrapper {
-    position: relative;
+/* 4x4 Grid Layout - Larger Cards, Tighter Spacing */
+.projectsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(0.75rem, 1.5vw, 1rem);
     width: 100%;
-    overflow: hidden;
-    margin-bottom: clamp(1.5rem, 3vh, 2rem);
-    display: flex;
-    /* Mask for fading edges "piece by piece" / smoothly */
-    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    box-sizing: border-box;
 }
 
-.marqueeTrack {
-    display: flex;
-    gap: clamp(1rem, 2.5vw, 1.5rem);
-    width: max-content;
-    will-change: transform;
-    transform: translateZ(0);
-}
-
-/* Card Styling */
+/* Card Styling - Maximized Square Cards */
 .card {
     position: relative;
-    width: clamp(300px, 25vw, 450px);
-    aspect-ratio: 16/9;
-    border-radius: clamp(12px, 2vw, 16px);
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: clamp(12px, 1.5vw, 16px);
     overflow: hidden;
     background: #111;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform: translateZ(0);
+    box-sizing: border-box;
 }
 
 .card:hover {
-    transform: scale(0.98);
+    transform: translateY(-12px) scale(1.03);
 }
 
 .mediaWrapper {
@@ -80,7 +56,7 @@
 }
 
 .card:hover .media {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 /* Gradient Overlay */
@@ -89,29 +65,35 @@
     inset: 0;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0) 60%);
     pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.card:hover .overlayGradient {
+    opacity: 0.8;
 }
 
 /* Top Right Icon */
 .topIcon {
     position: absolute;
-    top: clamp(0.75rem, 2vw, 1rem);
-    right: clamp(0.75rem, 2vw, 1rem);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(4px);
-    width: clamp(32px, 5vw, 36px);
-    height: clamp(32px, 5vw, 36px);
+    top: clamp(1rem, 2vw, 1.5rem);
+    right: clamp(1rem, 2vw, 1.5rem);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    width: clamp(40px, 5vw, 48px);
+    height: clamp(40px, 5vw, 48px);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transform: translate(-10px, 10px);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translate(-10px, 10px) scale(0.8);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card:hover .topIcon {
     opacity: 1;
-    transform: translate(0, 0);
+    transform: translate(0, 0) scale(1);
 }
 
 /* Card Content (Bottom Left) */
@@ -120,10 +102,10 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: clamp(1.5rem, 3vw, 2rem);
+    padding: clamp(1.25rem, 2.5vw, 1.75rem);
     z-index: 2;
     transform: translateY(10px);
-    transition: transform 0.4s ease;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .card:hover .cardContent {
@@ -133,114 +115,260 @@
 .projectTitle {
     color: #fff;
     font-family: var(--font-poppins), sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-    margin: 0 0 0.25rem 0;
-    line-height: 1.2;
-}
-
-.projectCategory {
-    color: #ccc;
-    font-family: var(--font-poppins), sans-serif;
-    font-weight: 400;
-    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    font-weight: 600;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
     margin: 0;
-    opacity: 0.8;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Footer Button */
-.footer {
+/* Lightbox Modal */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
     display: flex;
+    align-items: center;
     justify-content: center;
-    margin-top: clamp(3rem, 6vh, 4rem);
+    padding: clamp(2rem, 5vh, 4rem);
+    backdrop-filter: blur(10px);
 }
 
-.seeAllButton {
-    background: transparent;
+.lightboxContent {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.lightboxImageWrapper {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+}
+
+.lightboxMedia {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.lightboxInfo {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.lightboxTitle {
+    color: #fff;
+    font-family: var(--font-poppins), sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+}
+
+.lightboxCategory {
+    color: #999;
+    font-family: var(--font-poppins), sans-serif;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin: 0;
+}
+
+/* Close Button */
+.closeButton {
+    position: fixed;
+    top: clamp(1.5rem, 3vh, 2rem);
+    right: clamp(1.5rem, 3vw, 2rem);
+    background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
-    padding: clamp(0.75rem, 2vw, 0.875rem) clamp(1.5rem, 4vw, 2.25rem);
-    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-    font-weight: 500;
-    border-radius: 8px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+}
+
+.closeButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Navigation Buttons */
+.navButton {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+}
+
+.navButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prevButton {
+    left: clamp(1.5rem, 3vw, 2rem);
+}
+
+.nextButton {
+    right: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Counter */
+.counter {
+    position: fixed;
+    bottom: clamp(1.5rem, 3vh, 2rem);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
     font-family: var(--font-poppins), sans-serif;
-    letter-spacing: 0.02em;
+    font-size: 1rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    z-index: 10000;
 }
 
-.seeAllButton:hover {
-    background: #fff;
-    color: #000;
-    border-color: #fff;
-}
-
-/* Responsive - Tablets */
-@media (max-width: 1024px) {
-    .gallery {
-        padding: clamp(3rem, 6vh, 5rem) 0;
-    }
-}
-
-/* Small Tablets - NEW breakpoint */
-@media (max-width: 768px) {
-    .card {
-        width: clamp(280px, 75vw, 350px);
-    }
-
-    .header {
-        padding: 0 clamp(1rem, 3vw, 1.5rem);
-    }
-
-    .cardContent {
-        padding: clamp(1.25rem, 2.5vw, 1.5rem);
-    }
-
-    .marqueeTrack {
-        gap: clamp(0.75rem, 2vw, 1rem);
+/* Tablet Landscape: 3 columns */
+@media (min-width: 769px) and (max-width: 1279px) {
+    .projectsGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(0.75rem, 1.5vw, 1rem);
     }
 }
 
-/* Small Tablets Portrait */
-@media (max-width: 600px) {
-    .gallery {
-        padding: 4rem 0;
+/* Tablet Portrait: 2 columns */
+@media (min-width: 481px) and (max-width: 768px) {
+    .projectsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: clamp(0.5rem, 1vw, 0.75rem);
     }
 
     .card {
-        width: clamp(260px, 80vw, 320px);
-    }
-
-    .projectTitle {
-        font-size: 1.2rem;
-    }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-    .gallery {
-        padding: 3rem 0;
-    }
-
-    .card {
-        width: 85vw;
+        aspect-ratio: 1/1;
         border-radius: 12px;
     }
 
+    .container {
+        padding: 0 clamp(0.75rem, 2vw, 1rem);
+    }
+
     .cardContent {
-        padding: 1.25rem;
+        padding: clamp(1rem, 2vw, 1.25rem);
     }
 
     .projectTitle {
-        font-size: 1.1rem;
+        font-size: clamp(1rem, 3.5vw, 1.2rem);
     }
 
-    .projectCategory {
-        font-size: 0.8rem;
+    .lightboxImageWrapper {
+        height: 60vh;
     }
 
-    .seeAllButton {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.8rem;
+    .navButton {
+        width: 48px;
+        height: 48px;
+    }
+
+    .closeButton {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 480px) {
+    .gallery {
+        padding: clamp(3rem, 6vh, 4rem) 0 clamp(1.5rem, 3vh, 2rem) 0;
+    }
+
+    .projectsGrid {
+        grid-template-columns: 1fr;
+        gap: clamp(0.75rem, 2vh, 1rem);
+    }
+
+    .card {
+        border-radius: 12px;
+        aspect-ratio: 1/1;
+    }
+
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    .cardContent {
+        padding: 1rem;
+    }
+
+    .projectTitle {
+        font-size: 1rem;
+    }
+
+    .topIcon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .lightbox {
+        padding: 1rem;
+    }
+
+    .lightboxImageWrapper {
+        height: 50vh;
+    }
+
+    .lightboxTitle {
+        font-size: 1.5rem;
+    }
+
+    .lightboxCategory {
+        font-size: 0.9rem;
+    }
+
+    .navButton {
+        width: 44px;
+        height: 44px;
+    }
+
+    .closeButton {
+        width: 44px;
+        height: 44px;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .counter {
+        bottom: 1rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
     }
 }

@@ -25,6 +25,13 @@
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+/* Universal Box Sizing - Prevents Overflow */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
   /* scroll-snap-type removed for normal sliding */
@@ -53,6 +60,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   line-height: 1.5;
+  margin: 0;
+  padding: 0;
 }
 
 /* Custom Scrollbar */
