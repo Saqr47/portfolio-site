@@ -106,7 +106,7 @@ export default function LiquidEther({
                 this.width = Math.max(1, Math.floor(rect.width));
                 this.height = Math.max(1, Math.floor(rect.height));
                 this.aspect = this.width / this.height;
-                this.isMobile = window.matchMedia('(max-width: 1024px)').matches;
+                this.isMobile = window.matchMedia('(max-width: 768px)').matches;
                 if (this.renderer) this.renderer.setSize(this.width, this.height, false);
             }
             update() {
@@ -840,9 +840,10 @@ export default function LiquidEther({
                 });
             }
             calcSize() {
-                // Mobile Optimization: Standard resolution scaling (no extra reduction)
-                const width = Math.max(1, Math.round(this.options.resolution * Common.width));
-                const height = Math.max(1, Math.round(this.options.resolution * Common.height));
+                // Mobile Optimization: Reduce resolution scaling
+                const mobileScale = Common.isMobile ? 0.5 : 1.0;
+                const width = Math.max(1, Math.round(this.options.resolution * mobileScale * Common.width));
+                const height = Math.max(1, Math.round(this.options.resolution * mobileScale * Common.height));
                 const px_x = 1.0 / width;
                 const px_y = 1.0 / height;
                 this.cellScale.set(px_x, px_y);
@@ -965,7 +966,7 @@ export default function LiquidEther({
 
                 // FPS Cap variables
                 this.lastFrameTime = 0;
-                this.targetFPS = 60;
+                this.targetFPS = 30;
                 this.frameInterval = 1000 / this.targetFPS;
             }
             init() {
