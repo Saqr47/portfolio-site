@@ -4,12 +4,10 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Globe, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import styles from './Hero.module.css';
-import MobileGradient from './MobileGradient';
 
 export default function Hero() {
     return (
         <section className={styles.hero}>
-            <MobileGradient />
             <div className={styles.backgroundWrapper}>
                 {/* Grid is handled in CSS */}
             </div>
