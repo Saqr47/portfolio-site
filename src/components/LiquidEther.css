@@ -5,3 +5,10 @@
     height: 100%;
     touch-action: none;
 }
+
+/* Hide on mobile and tablet portrait where WebGL may not work properly */
+@media (max-width: 1024px) {
+    .liquid-ether-container {
+        display: none;
+    }
+}
