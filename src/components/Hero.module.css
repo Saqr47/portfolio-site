@@ -336,6 +336,19 @@
 /* Desktop & Tablet Landscape - Vertical Balance & Absolute Stability */
 @media (min-width: 1024px) {
 
+
+    /* More rounded/oval profile image on desktop and tablet landscape */
+    .portraitFrame {
+        border-radius: clamp(90px, 7.5vw, 110px);
+    }
+
+    .portrait {
+        border-radius: clamp(90px, 7.5vw, 110px);
+    }
+
+    .frameGlow {
+        border-radius: clamp(90px, 7.5vw, 110px);
+    }
     /* Center the editorial container to allow main content centering */
     .editorialContainer {
         display: flex;
