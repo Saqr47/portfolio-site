@@ -51,7 +51,7 @@ export default function Hero() {
                     >
                         <div className={styles.portraitFrame}>
                             <Image
-                                src="/portrait.jpg"
+                                src="/images/portrait.jpg"
                                 alt="Ahmed Sakr"
                                 width={400}
                                 height={400}
