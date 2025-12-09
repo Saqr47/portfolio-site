@@ -1,0 +1,81 @@
+[
+  {
+    "id": 1,
+    "title": "Mannequin",
+    "category": "3D Character Art",
+    "thumbnail": "/mannequin-1.png",
+    "description": "A detailed 3D render of a mannequin showcasing realistic textures and lighting.",
+    "images": ["/mannequin-1.png", "/mannequin-2.png"],
+    "alt": "Mannequin Render"
+  },
+  {
+    "id": 2,
+    "title": "Urban Heights",
+    "category": "CGI Environment",
+    "thumbnail": "/gallery-2.jpg",
+    "description": "Modern architectural visualization of a high-rise building.",
+    "images": ["/gallery-2.jpg"],
+    "videoSrc": "https://cdn.coverr.co/videos/coverr-modern-architecture-building-5243/1080p.mp4",
+    "alt": "Architecture"
+  },
+  {
+    "id": 3,
+    "title": "Misty Peaks",
+    "category": "Environment Design",
+    "thumbnail": "/gallery-3.jpg",
+    "description": "Atmospheric mountain landscape with fog effects.",
+    "images": ["/gallery-3.jpg"],
+    "videoSrc": "https://cdn.coverr.co/videos/coverr-foggy-mountains-2664/1080p.mp4",
+    "alt": "Landscape"
+  },
+  {
+    "id": 4,
+    "title": "Timeless Elegance",
+    "category": "Product Visualization",
+    "thumbnail": "/gallery-4.jpg",
+    "description": "Luxury watch product showcase with focus on materials and reflections.",
+    "images": ["/gallery-4.jpg"],
+    "videoSrc": "https://cdn.coverr.co/videos/coverr-luxury-watch-4632/1080p.mp4",
+    "alt": "Watch"
+  },
+  {
+    "id": 5,
+    "title": "Night Velocity",
+    "category": "CGI Motion",
+    "thumbnail": "/gallery-5.jpg",
+    "description": "Dynamic city traffic scene capturing the energy of night life.",
+    "images": ["/gallery-5.jpg"],
+    "videoSrc": "https://cdn.coverr.co/videos/coverr-night-city-traffic-4532/1080p.mp4",
+    "alt": "City"
+  },
+  {
+    "id": 6,
+    "title": "Ink Dynamics",
+    "category": "Abstract CGI",
+    "thumbnail": "/gallery-6.jpg",
+    "description": "Abstract simulation of ink diffusing in water.",
+    "images": ["/gallery-6.jpg"],
+    "videoSrc": "https://cdn.coverr.co/videos/coverr-ink-in-water-18/1080p.mp4",
+    "alt": "Ink"
+  },
+  {
+    "id": 7,
+    "title": "Neon Pulse",
+    "category": "CGI Art",
+    "thumbnail": "/gallery-1.jpg",
+    "description": "Vibrant abstract composition with neon colors and fluid shapes.",
+    "images": ["/gallery-1.jpg"],
+    "videoSrc": "https://cdn.coverr.co/videos/coverr-abstract-colorful-fluid-5392/1080p.mp4",
+    "alt": "Neon"
+  },
+  {
+    "id": 8,
+    "title": "Future Structure",
+    "category": "Architectural Viz",
+    "thumbnail": "/gallery-2.jpg",
+    "description": "Futuristic architectural concept design.",
+    "images": ["/gallery-2.jpg"],
+    "videoSrc": "https://cdn.coverr.co/videos/coverr-modern-architecture-building-5243/1080p.mp4",
+    "alt": "Future"
+  }
+]

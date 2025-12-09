@@ -8,34 +8,27 @@ import { ArrowUpRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface MediaItem {
     id: number;
+    title: string;
+    category: string;
+    thumbnail: string;
+    description: string;
     images: string[];
     videoSrc?: string;
     alt: string;
-    title: string;
-    category: string;
 }
 
-const projects: MediaItem[] = [
-    {
-        id: 1,
-        images: ['/mannequin-1.png', '/mannequin-2.png'],
-        alt: 'Mannequin Render',
-        title: 'Mannequin',
-        category: '3D Character Art'
-    },
-    { id: 2, images: ['/gallery-2.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-modern-architecture-building-5243/1080p.mp4', alt: 'Architecture', title: 'Urban Heights', category: 'CGI Environment' },
-    { id: 3, images: ['/gallery-3.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-foggy-mountains-2664/1080p.mp4', alt: 'Landscape', title: 'Misty Peaks', category: 'Environment Design' },
-    { id: 4, images: ['/gallery-4.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-luxury-watch-4632/1080p.mp4', alt: 'Watch', title: 'Timeless Elegance', category: 'Product Visualization' },
-    { id: 5, images: ['/gallery-5.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-night-city-traffic-4532/1080p.mp4', alt: 'City', title: 'Night Velocity', category: 'CGI Motion' },
-    { id: 6, images: ['/gallery-6.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-ink-in-water-18/1080p.mp4', alt: 'Ink', title: 'Ink Dynamics', category: 'Abstract CGI' },
-    { id: 7, images: ['/gallery-1.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-abstract-colorful-fluid-5392/1080p.mp4', alt: 'Neon', title: 'Neon Pulse', category: 'CGI Art' },
-    { id: 8, images: ['/gallery-2.jpg'], videoSrc: 'https://cdn.coverr.co/videos/coverr-modern-architecture-building-5243/1080p.mp4', alt: 'Future', title: 'Future Structure', category: 'Architectural Viz' },
-];
-
 export default function Gallery() {
+    const [projects, setProjects] = useState<MediaItem[]>([]);
     const [hoveredId, setHoveredId] = useState<number | null>(null);
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+
+    useEffect(() => {
+        fetch('/data/projects.json')
+            .then((res) => res.json())
+            .then((data) => setProjects(data))
+            .catch((error) => console.error('Error loading projects:', error));
+    }, []);
 
     // Keyboard Navigation
     useEffect(() => {
@@ -225,7 +218,7 @@ function Card({ item, hoveredId, setHoveredId, index, onClick }: {
                     <>
                         {/* Primary Image */}
                         <Image
-                            src={item.images[0]}
+                            src={item.thumbnail}
                             alt={item.alt}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
