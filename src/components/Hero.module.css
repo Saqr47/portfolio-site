@@ -270,7 +270,8 @@
 
     .portraitFrame {
         width: clamp(180px, 50vw, 350px);
-        height: clamp(240px, 65vw, 450px);
+        height: auto;
+        aspect-ratio: 1 / 1;
         margin: 0.5rem 0;
         z-index: 1;
     }

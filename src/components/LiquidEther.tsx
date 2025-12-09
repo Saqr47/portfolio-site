@@ -106,7 +106,7 @@ export default function LiquidEther({
                 this.width = Math.max(1, Math.floor(rect.width));
                 this.height = Math.max(1, Math.floor(rect.height));
                 this.aspect = this.width / this.height;
-                this.isMobile = window.matchMedia('(max-width: 768px)').matches;
+                this.isMobile = window.matchMedia('(max-width: 1024px)').matches;
                 if (this.renderer) this.renderer.setSize(this.width, this.height, false);
             }
             update() {
@@ -866,9 +866,11 @@ export default function LiquidEther({
                     isBounce: this.options.isBounce,
                     BFECC: this.options.BFECC
                 });
+                // Reduce intensity on mobile for subtler effect
+                const effectiveMouseForce = Common.isMobile ? this.options.mouse_force * 0.4 : this.options.mouse_force;
                 this.externalForce.update({
                     cursor_size: this.options.cursor_size,
-                    mouse_force: this.options.mouse_force,
+                    mouse_force: effectiveMouseForce,
                     cellScale: this.cellScale
                 });
                 let vel = this.fbos.vel_1;
@@ -933,7 +935,8 @@ export default function LiquidEther({
                 this.props = props;
                 Common.init(props.$wrapper);
                 Mouse.init(props.$wrapper);
-                Mouse.autoIntensity = props.autoIntensity;
+                // Reduce auto intensity on mobile for subtler, less overwhelming effect
+                Mouse.autoIntensity = Common.isMobile ? props.autoIntensity * 0.5 : props.autoIntensity;
                 Mouse.takeoverDuration = props.takeoverDuration;
 
                 // Immediate start: set last interaction to allow immediate auto-drive
@@ -966,7 +969,7 @@ export default function LiquidEther({
 
                 // FPS Cap variables
                 this.lastFrameTime = 0;
-                this.targetFPS = 30;
+                this.targetFPS = 60;
                 this.frameInterval = 1000 / this.targetFPS;
             }
             init() {
